@@ -35,19 +35,64 @@ class University {
   }
 
   getDepartments() {
-    return this.departments;
+    // return this.departments;
+    let departmentInUniversity = "";
+    for (let i = 0; i < this.departments.length; i++) {
+      departmentInUniversity += this.departments[i].tostring();
+      if (i < this.departments.length - i) {
+        departmentInUniversity += "\n\n\t";
+      }
+    }
+    return `Department in University :\n\t${departmentInUniversity}`;
   }
 
   getStudents() {
-    return this.students;
+    // return this.students;
+    let studentInUniversity = "";
+    for (let i = 0; i < this.students.length; i++) {
+      studentInUniversity += this.students[i].tostring();
+      if (i < this.students.length - 1) {
+        studentInUniversity += "\n\n\t";
+      }
+    }
+    return `Students in University :\n\t${studentInUniversity}`;
   }
 
   getProfessors() {
-    return this.professors;
+    // return this.professors;
+    let professorInUniversity = "";
+    for (let i = 0; i < this.professors.length; i++) {
+      professorInUniversity += this.professors[i].tostring();
+      if (i < this.professors.length - 1) {
+        professorInUniversity += "\n\n\t";
+      }
+    }
+    return `Professor in University :\n\t${professorInUniversity}`;
   }
 
   tostring() {
-    return `University : ${this.name},\n\tLocation : ${this.location},\n\tDepartment : ${this.departments},\n\tStudents : ${this.students},\n\tProfessors : ${this.professors}`;
+    let siu = "";
+    let piu = "";
+    let diu = "";
+    for (let i = 0; i < this.students.length; i++) {
+      siu += this.students[i].name;
+      if (i < this.students.length - 1) {
+        siu += ", ";
+      }
+    }
+    for (let i = 0; i < this.professors.length; i++) {
+      piu += this.professors[i].name;
+      if (i < this.professors.length - 1) {
+        piu += ", ";
+      }
+    }
+    for (let i = 0; i < this.departments.length; i++) {
+      diu += this.departments[i].name;
+      if (i < this.departments.length - 1) {
+        diu += ", ";
+      }
+    }
+    return `University : ${this.name},\n\tLocation : ${this.location},\n\tDepartment : ${diu},\n\tStudents : ${siu},\n\tProfessors : ${piu}`;
   }
 }
 
@@ -95,7 +140,21 @@ class Department {
   }
 
   tostring() {
-    return `Department : ${this.name},\n\tCourse : ${this.courses.length},\n\tStudents : ${this.students},\n\tProfessors : ${this.professors}`;
+    let siu = "";
+    let piu = "";
+    for (let i = 0; i < this.students.length; i++) {
+      siu += this.students[i].name;
+      if (i < this.students.length - 1) {
+        siu += ", ";
+      }
+    }
+    for (let i = 0; i < this.professors.length; i++) {
+      piu += this.professors[i].name;
+      if (i < this.professors.length - 1) {
+        piu += ", ";
+      }
+    }
+    return `Department : ${this.name},\n\tCourse : ${this.courses.length},\n\tStudents : ${siu},\n\tProfessors : ${piu}`;
   }
 }
 
@@ -129,7 +188,14 @@ class Course {
   }
 
   tostring() {
-    return `Course : ${this.code} - ${this.title},\n\tProfessor : ${this.professor},\n\tStudents : ${this.students}`;
+    let siu = "";
+    for (let i = 0; i < this.students.length; i++) {
+      siu += this.students[i].name;
+      if (i < this.students.length - 1) {
+        siu += ", ";
+      }
+    }
+    return `Course : ${this.code} - ${this.title},\n\tProfessor : ${this.professor.name},\n\tStudents : ${siu}`;
   }
 }
 
@@ -166,7 +232,14 @@ class Professor extends Person {
   }
 
   tostring() {
-    return `Professor : Dr. ${this.name}, Staff ID : ${this.staffID},\n\tCourses : ${this.courses}`;
+    let teachCourse = "";
+    for (let i = 0; i < this.courses.length; i++) {
+      teachCourse += this.courses[i].title;
+      if (i < this.courses.length - 1) {
+        teachCourse += ", ";
+      }
+    }
+    return `Professor : Dr. ${this.name}, Staff ID : ${this.staffID},\n\tCourses : ${teachCourse}`;
   }
 }
 
@@ -192,7 +265,14 @@ class Student extends Person {
   }
 
   tostring() {
-    return `Student : ${this.name}, Student ID : ${this.studentID}, Year : ${this.year}\n\tCourses : ${this.courses}`;
+    let registeredCourse = "";
+    for (let i = 0; i < this.courses.length; i++) {
+      registeredCourse += this.courses[i].title;
+      if (i < this.courses.length - 1) {
+        registeredCourse += ", ";
+      }
+    }
+    return `Student : ${this.name}, Student ID : ${this.studentID}, Year : ${this.year}\n\tCourses : ${registeredCourse}`;
   }
 }
 
@@ -241,10 +321,17 @@ const main = () => {
   const cs101 = new Course("CS101", "Introducing to Programming");
   const se101 = new Course("SE101", "Introducing to Database");
 
+  se.addCourse(se101);
+  se.addCourse(cs101);
+  se.addProfessor(worachet);
+  se.addProfessor(udsanee);
+  se.addStudent(tan);
+  se.addStudent(punsan);
+
   se101.addStudent(tan);
   se101.addStudent(punsan);
 
-  se101.removeStudent(tan);
+  //   se101.removeStudent(tan);
 
   se101.setProfessor(worachet);
   cs101.setProfessor(udsanee);
@@ -256,6 +343,12 @@ const main = () => {
   npru.addStudent(tan);
   npru.addStudent(punsan);
 
-  console.log(se101.getStudents());
+  worachet.teachCourse(se101);
+  worachet.teachCourse(cs101);
+
+  tan.registerCourse(se101);
+  tan.registerCourse(cs101);
+
+  console.log(tan.tostring());
 };
 main();
