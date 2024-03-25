@@ -320,6 +320,8 @@ const main = () => {
   //   Course
   const cs101 = new Course("CS101", "Introducing to Programming");
   const se101 = new Course("SE101", "Introducing to Database");
+  const ve101 = new Course("VE101", "Introducing to Video Edit");
+  const dr202 = new Course("SE101", "Introducing to Drawing");
 
   se.addCourse(se101);
   se.addCourse(cs101);
@@ -327,6 +329,13 @@ const main = () => {
   se.addProfessor(udsanee);
   se.addStudent(tan);
   se.addStudent(punsan);
+  
+  mm.addCourse(se101);
+  mm.addCourse(cs101);
+  mm.addProfessor(worachet);
+  mm.addProfessor(udsanee);
+  mm.addStudent(tan);
+  mm.addStudent(punsan);
 
   se101.addStudent(tan);
   se101.addStudent(punsan);
@@ -349,6 +358,14 @@ const main = () => {
   tan.registerCourse(se101);
   tan.registerCourse(cs101);
 
+  console.log(npru.tostring());
+  console.log(se.tostring());
+  console.log(mm.tostring());
+  console.log(se101.tostring());
+  console.log(cs101.tostring());
+  console.log(worachet.tostring());
+  console.log(udsanee.tostring());
   console.log(tan.tostring());
+  console.log(punsan.tostring());
 };
 main();
