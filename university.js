@@ -357,6 +357,8 @@ const main = () => {
 
   tan.registerCourse(se101);
   tan.registerCourse(cs101);
+  punsan.registerCourse(se101)
+  punsan.registerCourse(cs101)
 
   console.log(npru.tostring());
   console.log(se.tostring());
@@ -367,5 +369,8 @@ const main = () => {
   console.log(udsanee.tostring());
   console.log(tan.tostring());
   console.log(punsan.tostring());
+  console.log(npru.getDepartments());
+  console.log(npru.getProfessors());
+  console.log(npru.getStudents());
 };
 main();
