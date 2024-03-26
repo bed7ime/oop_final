@@ -39,7 +39,7 @@ class University {
     let departmentInUniversity = "";
     for (let i = 0; i < this.departments.length; i++) {
       departmentInUniversity += this.departments[i].tostring();
-      if (i < this.departments.length - i) {
+      if (i < this.departments.length - 1) {
         departmentInUniversity += "\n\n\t";
       }
     }
